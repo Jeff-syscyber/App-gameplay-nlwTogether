@@ -1,23 +1,28 @@
-import React from "react";
-import { View, Text } from "react-native";
+import React from 'react';
+import { View, Text } from 'react-native';
 
-import { Avatar } from "../Avatar";
-import { styles } from "./styles";
+import { useAuth } from '../../hooks/auth';
+
+import { Avatar } from '../Avatar';
+import { styles } from './styles';
 
 export function Profile() {
+  const { user } = useAuth();
+  console.log(user)
+
   return (
     <View style={styles.container}>
 
-    <Avatar urlImage="https://github.com/Jeff-syscyber.png"/>
+      <Avatar urlImage={user.avatar} />
 
       <View>
         <View style={styles.user}>
           <Text style={styles.greeting}>
             Olá,
           </Text>
-
+          
           <Text style={styles.username}>
-            Rodrigo
+            { user.firstName }
           </Text>
         </View>
 
@@ -25,6 +30,8 @@ export function Profile() {
           Hoje é dia de vitória
         </Text>
       </View>
+
     </View>
   )
+
 }
